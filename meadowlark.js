@@ -1,6 +1,9 @@
 const express = require('express')
 const expressHandlebars = require('express-handlebars')
 
+//Custome module
+const fortune = require('./lib/fortune')
+
 const app = express()
 
 const port = process.env.PORT || 8080
@@ -16,7 +19,9 @@ app.use(express.static(__dirname + '/public'))
 
 app.get('/', (req, res) => res.render('home'))
 
-app.get('/about', (req, res) => res.render('about'))
+app.get('/about', (req, res) => {
+    res.render('about', { fortune: fortune.getFortune() })
+)
 
 //Custom 404 Page
 app.use((req, res) => {

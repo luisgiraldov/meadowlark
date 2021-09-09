@@ -1,7 +1,7 @@
 const express = require('express')
 const expressHandlebars = require('express-handlebars')
 
-//Custome module
+//Custom module
 const fortune = require('./lib/fortune')
 
 const app = express()
@@ -21,7 +21,7 @@ app.get('/', (req, res) => res.render('home'))
 
 app.get('/about', (req, res) => {
     res.render('about', { fortune: fortune.getFortune() })
-)
+})
 
 //Custom 404 Page
 app.use((req, res) => {

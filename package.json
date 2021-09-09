@@ -4,6 +4,11 @@
   "description": "",
   "main": "meadowlark.js",
   "scripts": {
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build": "npm run build:types && npm run build:js",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Luis Giraldo",
@@ -13,6 +18,12 @@
     "express-handlebars": "^5.3.3"
   },
   "devDependencies": {
-    "jest": "^27.1.0"
+    "@babel/cli": "^7.15.4",
+    "@babel/core": "^7.15.5",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/preset-env": "^7.15.4",
+    "@babel/preset-typescript": "^7.15.0",
+    "jest": "^27.1.0",
+    "typescript": "^4.4.2"
   }
 }

@@ -2,7 +2,7 @@ const express = require('express')
 const expressHandlebars = require('express-handlebars')
 
 //Custom module
-const fortune = require('./lib/fortune')
+const fortune = require('../lib/fortune')
 
 const app = express()
 

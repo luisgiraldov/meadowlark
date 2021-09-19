@@ -10,6 +10,7 @@
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline",
     "test": "jest",
+    "test:watch": "npm test -- --watch",
     "dev:server": "nodemon --watch './src/**/*.ts' --exec 'ts-node' ./src/meadowlark.ts"
   },
   "author": "Luis Giraldo",

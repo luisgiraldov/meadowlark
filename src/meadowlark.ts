@@ -1,19 +1,11 @@
-import express, { 
-    Request, 
-    Response,
-    NextFunction, 
-    ErrorRequestHandler } from 'express';
+import express from 'express'
 import expressHandlebars from 'express-handlebars'
-
-//Custom module
-import { getFortune } from '../lib/fortune'
-
-//Custom 500 Page middleware
-export const custom500ErrorPageMiddleware: ErrorRequestHandler = (err, req, res, next) => {
-    console.error(err.message)
-    res.status(500)
-    res.render('500')
-};
+import { 
+    home, 
+    about, 
+    notFound, 
+    serverError 
+} from './lib/handlers'
 
 const app = express()
 
@@ -28,17 +20,12 @@ app.set('view engine', 'handlebars')
 //Configure static route middleware
 app.use(express.static('public'))
 
-app.get('/', (req, res) => res.render('home'))
+app.get('/', home)
 
-app.get('/about', (req, res) => {
-    res.render('about', { fortune: getFortune() })
-})
+app.get('/about', about)
 
 //Custom 404 Page
-app.use((req, res) => {
-    res.status(404)
-    res.render('404')
-})
+app.use(notFound)
 
 //Custom 500 Page
 // app.use((err, req, res, next) => {
@@ -46,7 +33,7 @@ app.use((req, res) => {
 //     res.status(500)
 //     res.render('500')
 // })
-app.use(custom500ErrorPageMiddleware)
+app.use(serverError)
 
 
 app.listen(port, () => console.log(

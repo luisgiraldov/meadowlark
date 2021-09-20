@@ -11,7 +11,8 @@
     "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline",
     "test": "jest",
     "test:watch": "npm test -- --watch",
-    "dev:server": "nodemon --watch './src/**/*.ts' --exec 'ts-node' ./src/meadowlark.ts"
+    "dev:server": "nodemon --watch './src/**/*.ts' --exec 'ts-node' ./src/meadowlark.ts",
+    "lint": "eslint src"
   },
   "author": "Luis Giraldo",
   "license": "MIT",
@@ -30,6 +31,9 @@
     "@types/express": "^4.17.13",
     "@types/express-handlebars": "^5.3.1",
     "@types/node": "^16.9.1",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
+    "eslint": "^7.32.0",
     "jest": "^27.1.0",
     "nodemon": "^2.0.12",
     "portfinder": "^1.0.28",

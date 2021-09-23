@@ -24,3 +24,19 @@ export const home = (req: Request, res: Response): void => res.render('home')
 
 export const about = (req: Request, res: Response): void => res.render('about', { fortune: getFortune() })
 
+export const newsletterSignUp = (req: Request, res: Response): void => {
+    //we will learn about CSRF later... for now, we just provide a dummy value
+    res.render('newsletter-signup', { csrf: 'CSRF token goes here' })
+}
+
+export const newsletterSignUpProcess = (req: Request, res: Response): void => {
+    console.log('Form (from querystring): ' + req.body.form)
+    console.log('CSFR token (from hidden form field): ' + req.body._csrf)
+    console.log('Name (from visible form field): ' + req.body.name)
+    console.log('Email (from visible form field): ' + req.body.email)
+    res.redirect(303, '/newsletter-signup/thank-you')
+}
+
+export const newsletterSignUpThankYou = (req: Request, res: Response): void => {
+    res.render('newsletter-signup-thank-you')
+}

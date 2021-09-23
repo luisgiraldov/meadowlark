@@ -4,7 +4,10 @@ import {
     home, 
     about, 
     notFound, 
-    serverError 
+    serverError,
+    newsletterSignUp,
+    newsletterSignUpProcess,
+    newsletterSignUpThankYou 
 } from './lib/handlers'
 
 const app = express()
@@ -20,9 +23,17 @@ app.set('view engine', 'handlebars')
 //Configure static route middleware
 app.use(express.static('public'))
 
+//Form handling
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+
 app.get('/', home)
 
 app.get('/about', about)
+
+app.get('/newsletter-signup', newsletterSignUp)
+app.post('/newsletter-signup/process', newsletterSignUpProcess)
+app.get('/newsletter-signup/thank-you', newsletterSignUpThankYou)
 
 //Custom 404 Page
 app.use(notFound)
